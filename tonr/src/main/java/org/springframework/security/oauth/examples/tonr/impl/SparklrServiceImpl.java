@@ -34,7 +34,7 @@ public class SparklrServiceImpl implements SparklrService {
 		try {
 			InputStream photosXML = new ByteArrayInputStream(sparklrRestTemplate.getForObject(
 					URI.create(sparklrPhotoListURL), byte[].class));
-
+                        
 			final List<String> photoIds = new ArrayList<String>();
 			SAXParserFactory parserFactory = SAXParserFactory.newInstance();
 			parserFactory.setValidating(false);
@@ -46,6 +46,7 @@ public class SparklrServiceImpl implements SparklrService {
 				public void startElement(String uri, String localName, String qName, Attributes attributes)
 						throws SAXException {
 					if ("photo".equals(qName)) {
+                                                System.out.println("photosXML : " + attributes.getValue("id"));
 						photoIds.add(attributes.getValue("id"));
 					}
 				}

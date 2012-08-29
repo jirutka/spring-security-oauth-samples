@@ -35,13 +35,19 @@
     <bean id="photoController" class="org.springframework.security.oauth.examples.sparklr.mvc.PhotoController"
           p:photoService-ref="photoServices" />
 
-    <bean id="adminController" class="org.springframework.security.oauth.examples.sparklr.mvc.AdminController"
-          p:tokenServices-ref="tokenServices"
-          p:userApprovalHandler-ref="userApprovalHandler" />
 
-    <!-- Override the default mappings for approval and error pages -->
-    <bean id="accessConfirmationController" class="org.springframework.security.oauth.examples.sparklr.mvc.AccessConfirmationController"
-          p:clientDetailsService-ref="clientDetails" />
+    <!--v COMMENT THESE OUT IF YOU WANT TO USE REMOTE AUTHORIZATION SERVER v-->
+
+        <bean id="adminController" class="org.springframework.security.oauth.examples.sparklr.mvc.AdminController"
+              p:tokenServices-ref="tokenServices"
+              p:userApprovalHandler-ref="userApprovalHandler" />
+
+         <!--Override the default mappings for approval and error pages-->
+        <bean id="accessConfirmationController" class="org.springframework.security.oauth.examples.sparklr.mvc.AccessConfirmationController"
+              p:clientDetailsService-ref="clientDetails" />
+
+    <!--^ COMMENT THESE OUT IF YOU WANT TO USE REMOTE AUTHORIZATION SERVER ^-->
+    
 
 
     <!--//// Services ////-->

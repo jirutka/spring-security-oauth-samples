@@ -1,3 +1,11 @@
+# Samples for Spring Security OAuth2
+
+These are [original project samples](https://github.com/SpringSource/spring-security-oauth/tree/master/samples) 
+modified for use with remote authorization server (Remote TokenServices).
+
+
+## About
+
 These are the Spring Security OAuth sample apps and integration tests.
 There are two web apps, one (`sparklr`) is a resource & authorization
 server, and the other (`tonr`) is a client (consumer of the
