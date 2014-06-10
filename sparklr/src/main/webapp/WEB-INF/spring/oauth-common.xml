@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<beans xmlns="http://www.springframework.org/schema/beans" 
+<beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
        xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
        xmlns:sec="http://www.springframework.org/schema/security"
        xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-       http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
        http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-1.0.xsd
        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
 
-    
+
     <!--//////// Resource server ////////-->
 
     <sec:http access-denied-page="/login.jsp?authorization_error=true" disable-url-rewriting="true">
@@ -42,6 +40,7 @@
     <sec:authentication-manager alias="authenticationManager">
         <sec:authentication-provider>
             <sec:user-service>
+                <sec:user name="tomy" password="best" authorities="ROLE_USER" />
                 <sec:user name="marissa" password="koala" authorities="ROLE_USER" />
                 <sec:user name="paul" password="emu" authorities="ROLE_USER" />
             </sec:user-service>
@@ -60,12 +59,12 @@
 
     <bean id="oauthAccessDeniedHandler" class="org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler" />
 
-    
+
     <sec:global-method-security pre-post-annotations="enabled" proxy-target-class="true">
         <!--you could also wire in the expression handler up at the layer of the http filters. See https://jira.springsource.org/browse/SEC-1452 -->
         <sec:expression-handler ref="oauthExpressionHandler" />
     </sec:global-method-security>
-    
+
     <oauth:expression-handler id="oauthExpressionHandler" />
     <oauth:web-expression-handler id="oauthWebExpressionHandler" />
 
